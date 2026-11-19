@@ -8,9 +8,18 @@ for (let i = 0; i < args.length; i += 2) {
   const option = args[i];
   const parsedValue = Number(args[i + 1]);
 
-  if (option === "-m" && Number.isInteger(parsedValue) && parsedValue >= 1 && parsedValue <= 12) {
+  if (
+    option === "-m" &&
+    Number.isInteger(parsedValue) &&
+    parsedValue >= 1 &&
+    parsedValue <= 12
+  ) {
     month = parsedValue;
-  } else if (option === "-y" && Number.isInteger(parsedValue) && parsedValue >= 1) {
+  } else if (
+    option === "-y" &&
+    Number.isInteger(parsedValue) &&
+    parsedValue >= 1
+  ) {
     year = parsedValue;
   } else {
     throw new Error("入力された値は無効です");
@@ -19,7 +28,7 @@ for (let i = 0; i < args.length; i += 2) {
 
 // ヘッダーをカレンダー幅（20文字）の中央に配置
 const firstDay = new Date(year, month - 1, 1);
-const monthName = firstDay.toLocaleString('en-US', { month: 'long' });
+const monthName = firstDay.toLocaleString("en-US", { month: "long" });
 const header = `${monthName} ${year}`;
 const leftPadding = Math.max(0, Math.floor((20 - header.length) / 2));
 console.log(" ".repeat(leftPadding) + header);
