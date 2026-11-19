@@ -29,15 +29,15 @@ process.stdout.write("   ".repeat(firstDay.getDay()));
 
 const lastDay = new Date(year, month, 0);
 
-for (let i = 1; i <= lastDay.getDate(); i++) {
-  process.stdout.write(String(i).padStart(2) + " ");
+const totalDays = lastDay.getDate();
+const startWeekday = firstDay.getDay();
 
-  if ((firstDay.getDay() + i) % 7 === 0) {
+for (let i = 1; i <= totalDays; i++) {
+  process.stdout.write(String(i).padStart(2));
+
+  if ((startWeekday + i) % 7 === 0 || i === totalDays) {
     process.stdout.write("\n");
+  } else {
+    process.stdout.write(" ");
   }
-}
-
-// 最終日が土曜日でない場合のみ改行を追加
-if ((firstDay.getDay() + lastDay.getDate()) % 7 !== 0) {
-  console.log();
 }
