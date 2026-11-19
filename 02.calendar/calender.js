@@ -6,12 +6,12 @@ let month = today.getMonth() + 1;
 const args = process.argv.slice(2);
 for (let i = 0; i < args.length; i += 2) {
   const option = args[i];
-  const val = Number(args[i + 1]);
+  const parsedValue = Number(args[i + 1]);
 
-  if (option === "-m" && Number.isInteger(val) && val >= 1 && val <= 12) {
-    month = val;
-  } else if (option === "-y" && Number.isInteger(val) && val >= 1) {
-    year = val;
+  if (option === "-m" && Number.isInteger(parsedValue) && parsedValue >= 1 && parsedValue <= 12) {
+    month = parsedValue;
+  } else if (option === "-y" && Number.isInteger(parsedValue) && parsedValue >= 1) {
+    year = parsedValue;
   } else {
     throw new Error("入力された値は無効です");
   }
