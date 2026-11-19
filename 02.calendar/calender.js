@@ -5,12 +5,12 @@ let month = today.getMonth() + 1;
 // コマンドライン引数の解析（-m と -y の順不同・片方のみ指定に対応）
 const args = process.argv.slice(2);
 for (let i = 0; i < args.length; i += 2) {
-  const flag = args[i];
+  const option = args[i];
   const val = Number(args[i + 1]);
 
-  if (flag === "-m" && Number.isInteger(val) && val >= 1 && val <= 12) {
+  if (option === "-m" && Number.isInteger(val) && val >= 1 && val <= 12) {
     month = val;
-  } else if (flag === "-y" && Number.isInteger(val) && val >= 1) {
+  } else if (option === "-y" && Number.isInteger(val) && val >= 1) {
     year = val;
   } else {
     throw new Error("入力された値は無効です");
