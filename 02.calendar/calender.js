@@ -17,27 +17,27 @@ for (let i = 0; i < args.length; i += 2) {
   }
 }
 
-const dayFirst = new Date(year, month - 1, 1);
-const dayLast = new Date(year, month, 0);
-
 // ヘッダーをカレンダー幅（20文字）の中央に配置
-const monthName = dayFirst.toLocaleString('en-US', { month: 'long' });
+const firstDay = new Date(year, month - 1, 1);
+const monthName = firstDay.toLocaleString('en-US', { month: 'long' });
 const header = `${monthName} ${year}`;
 const leftPadding = Math.max(0, Math.floor((20 - header.length) / 2));
 console.log(" ".repeat(leftPadding) + header);
 console.log("Su Mo Tu We Th Fr Sa");
 
-process.stdout.write("   ".repeat(dayFirst.getDay()));
+process.stdout.write("   ".repeat(firstDay.getDay()));
 
-for (let i = 1; i <= dayLast.getDate(); i++) {
+const lastDay = new Date(year, month, 0);
+
+for (let i = 1; i <= lastDay.getDate(); i++) {
   process.stdout.write(String(i).padStart(2) + " ");
 
-  if ((dayFirst.getDay() + i) % 7 === 0) {
+  if ((firstDay.getDay() + i) % 7 === 0) {
     process.stdout.write("\n");
   }
 }
 
 // 最終日が土曜日でない場合のみ改行を追加
-if ((dayFirst.getDay() + dayLast.getDate()) % 7 !== 0) {
+if ((firstDay.getDay() + lastDay.getDate()) % 7 !== 0) {
   console.log();
 }
