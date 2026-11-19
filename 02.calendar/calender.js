@@ -1,21 +1,6 @@
-const date = new Date();
-const monthNames = {
-  1: "January",
-  2: "February",
-  3: "March",
-  4: "April",
-  5: "May",
-  6: "June",
-  7: "July",
-  8: "August",
-  9: "September",
-  10: "October",
-  11: "November",
-  12: "December",
-};
-
-let year = date.getFullYear();
-let month = date.getMonth() + 1;
+const today = new Date();
+let year = today.getFullYear();
+let month = today.getMonth() + 1;
 
 // コマンドライン引数の解析（-m と -y の順不同・片方のみ指定に対応）
 const args = process.argv.slice(2);
@@ -36,7 +21,8 @@ const dayFirst = new Date(year, month - 1, 1);
 const dayLast = new Date(year, month, 0);
 
 // ヘッダーをカレンダー幅（20文字）の中央に配置
-const header = `${monthNames[month]} ${year}`;
+const monthName = dayFirst.toLocaleString('en-US', { month: 'long' });
+const header = `${monthName} ${year}`;
 const leftPadding = Math.max(0, Math.floor((20 - header.length) / 2));
 console.log(" ".repeat(leftPadding) + header);
 console.log("Su Mo Tu We Th Fr Sa");
